@@ -1,6 +1,7 @@
 import feedparser
 from flask import Flask  # imports Flask from the package flask
 from flask import render_template
+from flask import request
 
 app = Flask(__name__)  # creates an instance of the Flask object
 
@@ -14,10 +15,15 @@ RSS_FEEDS = {
 }
 
 # Flask uses decorators for URL routing
-@app.route("/")  # function directly below it should be called whenever a user vists root page
-@app.route("/<publication>")
-def get_news(publication='bbc'):
+# function directly below it should be called whenever a user vists root page
+@app.route("/")
+def get_news():
     ''' This function is called by Flask when a user visits our application'''
+    query = request.args.get('publication')
+    if not query or query.lower() not in RSS_FEEDS:
+        publication = "bbc"
+    else:
+        publication = query.lower()
     feed = feedparser.parse(RSS_FEEDS[publication])
     return render_template('home.html', articles=feed['entries'])
 
