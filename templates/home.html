@@ -2,34 +2,60 @@
 <html>
 <head>
     <title> Headlines </title>
-</head>
-<body>
     <style type="text/css">
-        .container {
+        html {
+            font-family: "Helvetica";
+            background: white;
+        }
+        body {
+            background: lightgrey;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        #header {
+            padding-top: 5;
+            background: lightsteelblue;
+
+        }
+        #inner-header {
+            padding-left: 10;
+        }
+        #main {
             padding-right: 15px;
             padding-left: 15px;
             margin-right: auto;
             margin-left: auto;
         }
-        @media (min-width: 768px) { 
-            .container {
-                width: 750px
-            }
+        input [type='text'], select {
+            color: grey;
+            border: 1px solid lightsteelblue;
+            height: 30px;
+            line-height: 15px;
+            margin: 2px 6px 16px 0px;
         }
-        @media (min-width: 992px) { 
-            .container {
-                width: 970px
-            }
+        input [type='submit'] {
+            padding: 5px 10px 5px 10px;
+            color: black;
+            background: lightsteelblue;
+            border: none;
+            box-shadow: 1px 1px 1px #4C6E91;
         }
-        @media (min-width: 1200px) { 
-            .container {
-                width: 1000px
-            }
+        input [type='submit']:hover{
+            background: steelblue;
         }
     </style>
-    <div class="container">
-        <center><h1> Headlines Project </h1></center>
-        <!-- WEATHER -->
+</head>
+<body>
+    <div id="header">
+        <div id="inner-header">
+            <center><h1> Headlines Project </h1></center>
+            <center><strong><p>Headlines. Currency. Weather.</p></strong></center>
+        </div>
+        <hr/> 
+    </div>
+    <!-- WEATHER -->
+    <div id="main">
         <h2> Current Weather </h2>
         <form>
             <input type="text" name="city" placeholder="weather search">
@@ -69,7 +95,7 @@
             <!-- <input type="text" name="publication" placeholder="search for publication" /> -->
             <input type="submit" value="Submit" />
         </form>
-        
+
 
         <h3><p>Currently showing headlines from <b>{{publication}}</b></p></h3>
         {% for article in articles %}
